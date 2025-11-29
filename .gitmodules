@@ -1,0 +1,6 @@
+[submodule "3rdparty/magic_enum/magic_enum"]
+	path = 3rdparty/magic_enum/magic_enum
+	url = https://github.com/Neargye/magic_enum.git
+[submodule "3rdparty/LEDIndicatorPP"]
+	path = 3rdparty/LEDIndicatorPP
+	url = https://github.com/kaidegit/LEDIndicatorPP.git
