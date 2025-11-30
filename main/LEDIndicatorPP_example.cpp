@@ -100,7 +100,7 @@ public:
                 {HOLD, ON, 250},
                 {HOLD, OFF, 250},
                 {HOLD, ON, 1000},
-                {LOOP, 0},
+                {STOP, 0},
             }
         };
         led_indicator->addPattern(BlinkType::BLINK_FAST, blink_pattern_fast);
@@ -136,9 +136,9 @@ private:
     static inline LEDController *instance = nullptr;
 };
 
-static const char* const TAG = "main";
-extern "C" void app_main(void) {
+static const char *const TAG = "main";
 
+extern "C" void app_main(void) {
     ESP_LOGI(TAG, "LED Indicator Example");
     LEDController::getInstance();
 
@@ -159,7 +159,7 @@ extern "C" void app_main(void) {
 
     vTaskDelay(pdMS_TO_TICKS(5000));
 
-    ESP_LOGI(TAG, "start normal blink and fast blink, it should behave fast blink");
+    ESP_LOGI(TAG, "start normal blink and fast blink, it should behave fast blink and rollback to normal");
     LEDController::getInstance()->getIndicator()->start(LEDController::BlinkType::BLINK_FAST);
     LEDController::getInstance()->getIndicator()->start(LEDController::BlinkType::BLINK_NORMAL);
 }
