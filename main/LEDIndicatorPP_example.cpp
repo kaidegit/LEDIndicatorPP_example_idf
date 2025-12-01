@@ -40,7 +40,7 @@ public:
         gpio_config(&gpio_conf);
         gpio_set_level(led_pin, 1);
 
-        auto led_mutex = xSemaphoreCreateMutex();
+        led_mutex = xSemaphoreCreateMutex();
         if (led_mutex == nullptr) {
             ESP_LOGE("LED", "led_mutex create failed");
         }
@@ -132,6 +132,7 @@ public:
 private:
     gpio_num_t led_pin;
     LEDIndicator<BlinkType> *led_indicator = nullptr;
+    SemaphoreHandle_t led_mutex = nullptr;
     TimerHandle_t tmr;
     static inline LEDController *instance = nullptr;
 };
